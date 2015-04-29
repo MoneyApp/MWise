@@ -1,0 +1,86 @@
+﻿@model TimeMachine.Models.GroupInfoViewModel
+
+@{
+    ViewBag.Title = "GroupInfo";
+}
+
+<div class="jumbotron text-center">
+    <h2>View Group Info</h2>
+</div>
+
+<div class="row">
+
+    <section class="col-md-7">
+        <div id="AddGrpTransaction">
+            <h3>Make A Transaction</h3>
+            <hr />
+            @Html.Partial("CreateGroupTransaction", Model.CreateGroupTransactionVM)
+        </div>
+    </section>
+
+    <section class="col-md-5">
+
+        <div id="ViewGrpTransaction">
+            <h3>View Transaction History</h3>
+            <hr />
+            @Html.Partial("GroupTransactionHistoryDatePage",Model.GroupTransactionHistoryDateVM)
+            @*<a href="ViewGroupTransactionHistory" class="btn-link col-md-offset-4">Click Here</a>*@
+            @*@Html.ActionLink("Click Here", "ViewTransactionHistory", "", htmlAttributes: new { @class = "btn-link col-md-offset-4" })*@
+        </div>
+
+        <div id="GrpMemberLists">
+            <h3>Group Members</h3>
+            <hr />
+            <div class="list-group">
+                <div class="">
+                    <div class="list-group-item col-md-12">Test</div>
+                </div>
+                @foreach (var item in Model.GroupUsersList)
+                {
+                    <div class="list-group-item">@item.Text</div>
+                }
+            </div>
+        </div>
+
+        <div id="GrpInvite">
+            <h3>Add Group Members</h3>
+            <hr />
+            @using (Ajax.BeginForm("A", "C", new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                OnSuccess = "SuccessInvite",
+                OnFailure = "ErrorInvite"
+            }))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EmailId, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.TextBoxFor(m => m.EmailId, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" value="Send Invite" />
+                </div>
+            }
+        </div>
+
+    </section>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        (function () {
+            $("#StartDatePicker").datetimepicker();
+            $("#EndDatePicker").datetimepicker();
+
+            $("#StartDatePicker").on("dp.change", function (e) {
+                $("#EndDatePicker").data("DateTimePicker").minDate(e.date);
+            });
+
+            $("#EndDatePicker").on("dp.change", function (e) {
+                $("#StartDatePicker").data("DateTimePicker").maxDate(e.date);
+            });
+
+        }());
+    </script>
+}

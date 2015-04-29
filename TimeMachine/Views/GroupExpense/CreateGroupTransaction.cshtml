@@ -1,0 +1,64 @@
+﻿@model TimeMachine.Models.GroupTransactionViewModel
+
+@using (Html.BeginForm("SaveGroupTransaction", "GroupExpense", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.SpentUser, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.SpentUser, Model.GroupUsers, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.SpentUser, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Date, new { @class = "form-control bt-datetimepicker" })
+            @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ItemType, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.ItemType, Model.CategoryList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ItemType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ItemName, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.ItemName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ItemName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Quantity, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ItemPrice, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.ItemPrice, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ItemPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comments, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Comments, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-4">
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+    </div>
+}

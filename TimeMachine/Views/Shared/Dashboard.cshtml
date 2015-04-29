@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="jumbotron text-center">
+    <h2>Manage Your Accounts</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.ActionLink("Manage Your Individual Expenses", "Index", "IndividualExpense", "", new { @class = "btn-link" })
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Manage Your Group Accounts", "Index", "GroupExpense", "", new { @class = "btn-link" })
+    </div>
+</div>

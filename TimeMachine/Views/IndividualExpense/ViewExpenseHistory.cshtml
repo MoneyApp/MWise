@@ -1,0 +1,32 @@
+﻿@model TimeMachine.Models.IndividualExpenseDetailViewModel
+
+<div>
+    <h4>View Your Transactions</h4>
+</div>
+<hr />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Comments</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.IndividualExpenseHistoryModel)
+        {
+            <tr>
+                <td>@row.Date</td>
+                <td>@row.ItemName</td>
+                <td>@row.ItemPrice</td>
+                <td>@row.Notes</td>
+                <td>@Html.ActionLink("Edit", "EditHistoryItem", "IndividualExpense", new { id = row.Id }, "")</td>
+                <td>@Html.ActionLink("Delete", "DeleteHistoryItem", new { id = row.Id }, new { onclick = "return ConfirmDelete()" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

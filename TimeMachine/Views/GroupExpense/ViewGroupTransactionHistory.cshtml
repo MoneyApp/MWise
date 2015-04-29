@@ -1,0 +1,42 @@
+﻿@model TimeMachine.Models.GroupTransactionHistoryViewModel
+
+@{
+    ViewBag.Title = "ViewTransactionHistory";
+}
+
+<div class="jumbotron text-center">
+    <h2>ViewGroupTransactionHistory</h2>
+</div>
+
+<div class="row">
+    <h2 class="text-center">View Transactions Of Group @Model.GroupName</h2>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Item Name</th>
+                <th>Item Quantity</th>
+                <th>Total Price</th>
+                <th>Comments</th>
+                <th>Spent By</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Item in Model.ViewTransactionHistoryVM)
+            {
+                <tr>
+                    <td>@Item.Date</td>
+                    <td>@Item.ItemName</td>
+                    <td>@Item.Quantity</td>
+                    <td>@Item.ItemPrice</td>
+                    <td>@Item.Comments</td>
+                    <td>@Item.SpentByUser</td>
+                    <td>@Html.ActionLink("Edit", "EditGroupTransactionHistory", new { transId = @Item.Id }, htmlAttributes: new { @class = "btn-link" })</td>
+                    <td>@Html.ActionLink("Delete", "DeleteGroupTransactionHistory", new { transId = @Item.Id }, htmlAttributes: new { @class = "btn-link" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

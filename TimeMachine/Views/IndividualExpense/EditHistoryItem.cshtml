@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Individual Expense Details";
+}
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2>@ViewBag.Title</h2>
+        <p class="lead">Manage Your Personal Account</p>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("IndividualExpenseForm")
+        </div>
+    </div>
+</div>

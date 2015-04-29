@@ -1,0 +1,59 @@
+﻿@model TimeMachine.Models.IndividualExpenseDetailViewModel
+
+@using (Html.BeginForm("SaveExpenseForm", "IndividualExpense", FormMethod.Post, new { @class="form-horizontal", role="form" }))
+{ 
+    @Html.AntiForgeryToken()
+    
+    <h4>@TempData["HeaderText"]</h4>
+    <hr/>
+    
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    
+    @Html.HiddenFor(m => m.IndividualExpenseFormModel.Id, new { @Value = Model.IndividualExpenseFormModel.Id })
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.IndividualExpenseFormModel.Date, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.IndividualExpenseFormModel.Date, new { @class = "form-control bt-datetimepicker", @Value = Model.IndividualExpenseFormModel.Date })
+            @Html.ValidationMessageFor(m => m.IndividualExpenseFormModel.Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.IndividualExpenseFormModel.Category, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.IndividualExpenseFormModel.Category, Model.CategoryList, new { @class = "form-control", type = "Number", @Value = Model.IndividualExpenseFormModel.Category })
+            @Html.ValidationMessageFor(m => m.IndividualExpenseFormModel.Category, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.IndividualExpenseFormModel.ItemName, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.IndividualExpenseFormModel.ItemName, new { @class = "form-control", @Value = Model.IndividualExpenseFormModel.ItemName })
+            @Html.ValidationMessageFor(m => m.IndividualExpenseFormModel.ItemName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.IndividualExpenseFormModel.ItemPrice, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.IndividualExpenseFormModel.ItemPrice, new { @class = "form-control", type = "Number", @Value = Model.IndividualExpenseFormModel.ItemPrice })
+            @Html.ValidationMessageFor(m => m.IndividualExpenseFormModel.ItemPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.IndividualExpenseFormModel.Notes, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(m => m.IndividualExpenseFormModel.Notes, new { @class = "form-control", @Value = Model.IndividualExpenseFormModel.Notes })
+            @Html.ValidationMessageFor(m => m.IndividualExpenseFormModel.Notes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}
